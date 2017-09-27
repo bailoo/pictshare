@@ -231,7 +231,7 @@ class PictshareModel extends Model
 			case 'edgedetect': 
 			case 'smooth': 
 			case 'contrast':
-			case 'blur':
+			case 'nearg':
 			case 'sepia':
 			case 'sharpen':
 			case 'emboss':

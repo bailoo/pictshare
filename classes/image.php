@@ -199,7 +199,7 @@ class Image
                 case 'smooth': imagefilter($im,IMG_FILTER_SMOOTH,$val); break; 
                 case 'contrast': imagefilter($im,IMG_FILTER_CONTRAST,$val); break;
                 case 'pixelate': imagefilter($im,IMG_FILTER_PIXELATE,$val); break;
-                case 'blur': $this->blur($im,$val); break;
+                case 'nearg': $this->blur($im,$val); break;
                 case 'sepia': (new Filter($im))->sepia()->getImage();break;
                 case 'sharpen':(new Filter($im))->sharpen()->getImage();break;
 				case 'emboss':(new Filter($im))->emboss()->getImage();break;
