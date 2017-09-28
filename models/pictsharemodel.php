@@ -421,7 +421,7 @@ class PictshareModel extends Model
 		return $this->isTypeAllowed($this->getTypeOfFile($url));
 	}
 
-	function uploadImageFromURL($url)
+	function uploadImageFromURL($url, $fname)
 	{
 		$type = $this->getTypeOfFile($url);
 		$type = $this->isTypeAllowed($type);
@@ -429,6 +429,8 @@ class PictshareModel extends Model
 		if(!$type)
 			return array('status'=>'ERR','reason'=>'wrong filetype');
 
+		// Do not check for duplicate URL
+		/*
 		$dup_id = $this->isDuplicate($url);
 		if($dup_id)
 		{
@@ -441,12 +443,13 @@ class PictshareModel extends Model
 			$this->saveSHAOfFile($url,$hash);
 		}
 		
-		
-		
-			
 		if($dup_id)
 			return array('status'=>'OK','type'=>$type,'hash'=>$hash,'url'=>DOMAINPATH.PATH.$hash,'domain'=>DOMAINPATH);
-		
+		*/
+	
+		// Use given filename instead of hash
+		$hash = $fname;
+	
 		mkdir(ROOT.DS.'upload'.DS.$hash);
 		$file = ROOT.DS.'upload'.DS.$hash.DS.$hash;
 		

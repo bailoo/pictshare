@@ -30,8 +30,9 @@ if(UPLOAD_CODE!=false && !$pm->uploadCodeExists($_REQUEST['upload_code']))
 if($_REQUEST['getimage'])
 {
 	$url = $_REQUEST['getimage'];
+	$fname = $_REQUEST['name'];
 
-	echo json_encode($pm->uploadImageFromURL($url));
+	echo json_encode($pm->uploadImageFromURL($url, $fname));
 }
 else if($_FILES['postimage'])
 {
