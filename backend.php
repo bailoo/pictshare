@@ -1,4 +1,5 @@
-<?php	
+<?php
+
 session_cache_limiter("public");
 $expiry = 90; //days
 session_cache_expire($expiry * 24 * 60);
@@ -52,3 +53,16 @@ else if($_REQUEST['a']=='oembed')
 	echo json_encode($pm->oembed($_REQUEST['url'],$_REQUEST['t']));
 else
 	echo json_encode(array('status'=>'ERR','reason'=>'NO_VALID_COMMAND'));
+
+if(isset($_SERVER["HTTP_ORIGIN"]))
+{
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+}
+else
+{
+    header("Access-Control-Allow-Origin: *");
+}
+
+header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: X-Requested-With, access-control-allow-origin, access-control-allow-methods, access-control-allow-headers, Content-Type, Authorization, X-Requested-With, Accept, Origin');
+header('Content-Type: application/json');
