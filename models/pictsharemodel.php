@@ -537,7 +537,7 @@ class PictshareModel extends Model
 		return false;
 	}
 	
-	function processSingleUpload($file,$name)
+	function processSingleUpload($file,$name,$fname)
 	{
 		if(UPLOAD_CODE && !$this->uploadCodeExists($_REQUEST['upload_code']))
 			exit(json_encode(array('status'=>'ERR','reason'=>$this->translate(21))));
@@ -549,10 +549,11 @@ class PictshareModel extends Model
 			$type = $this->isTypeAllowed($type);
 			if(!$type) exit(json_encode(array('status'=>'ERR','reason'=>'Unsupported type')));
 			
-			$data = $this->uploadImageFromURL($_FILES[$name]["tmp_name"]);		
+			$data = $this->uploadImageFromURL($_FILES[$name]["tmp_name"], $fname);		
 			if($data['status']=='OK')
 			{
-				$hash = $data['hash'];
+				#$hash = $data['hash'];
+				$hash = $fname;
 				$o = array('status'=>'OK','type'=>$type,'hash'=>$hash,'url'=>DOMAINPATH.'/'.$hash,'domain'=>DOMAINPATH);
 				if($data['deletecode'])
 					$o['deletecode'] = $data['deletecode'];

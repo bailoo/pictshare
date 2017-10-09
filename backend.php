@@ -37,7 +37,8 @@ if($_REQUEST['getimage'])
 else if($_FILES['postimage'])
 {
 	$image = $_FILES['postimage'];
-	echo json_encode($pm->processSingleUpload($file,'postimage'));
+	$fname = $_REQUEST['name'];
+	echo json_encode($pm->processSingleUpload($file,'postimage', $fname));
 }
 else if($_REQUEST['base64'])
 {
